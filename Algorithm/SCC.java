@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
-
+//tajan
 class SCC{
 	private int V;
 	private int cnt;
@@ -72,7 +72,7 @@ class SCC{
 		Pos[] index = new Pos[cnt]; 
 //		scc 내부 정렬하고 맨앞 index순으로 전체 정렬
 		for (int i = 0; i < cnt; i++) {
-			Collections.sort(sccArray.get(cnt));
+			Collections.sort(sccArray.get(i));
 			index[i] = new Pos(i , sccArray.get(i).get(0));
 		}
 		Arrays.sort(index);
