@@ -10,7 +10,7 @@ class LCA{
 	
 	public LCA(int n) {
 		N = n;
-		size = (int) Math.ceil(Math.log(N+1) / Math.log(2));
+		size = (int) Math.ceil(Math.log(N+1) / Math.log(2)) + 1;
 		visited = new boolean[N+1];
 		depth = new int[N+1];
 		parent = new int[N+1][size];
