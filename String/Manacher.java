@@ -15,11 +15,7 @@ class Manacher{
 		}
 		int max = 1;
 		for (int i = 0; i < s.length(); i++) {
-			if((i & 1) == 0) {
-				max = Math.max(p[i], max);
-			} else {
-				max = Math.max(p[i], max);
-			}
+			max = Math.max(p[i], max);
 		}
 		return max;	
 	}
