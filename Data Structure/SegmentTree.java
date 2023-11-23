@@ -11,9 +11,11 @@ class SegmentTree{
 		if(start == end)
 			tree[node] = arr[start];
 		else {
-			init(arr , node << 1 , start , (start + end) >> 1);
-			init(arr , (node << 1) + 1 , ((start + end) >> 1) + 1 , end);
-			tree[node] = tree[node << 1] + tree[(node << 1) + 1];
+			int mid = (start + end) >> 1;
+			int next = node << 1;
+			init(arr , next , start , mid);
+			init(arr , next + 1 , mid + 1 , end);
+			tree[node] = tree[next] + tree[next + 1];
 		}
 	}
 	
@@ -24,9 +26,11 @@ class SegmentTree{
 		if(index == start && end == index) {
 			tree[node] = value;
 		} else {
-			update(node << 1 , start , (start + end) >> 1 , index , value);
-			update((node << 1) + 1 , ((start + end) >> 1) + 1 , end , index , value);
-			tree[node] = tree[node << 1] + tree[(node << 1) + 1];
+			int mid = (start + end) >> 1;
+			int next = node << 1;
+			update(next , start , mid , index , value);
+			update(next + 1 , mid + 1 , end , index , value);
+			tree[node] = tree[next] + tree[next + 1];
 		}
 	}
 	
@@ -36,7 +40,9 @@ class SegmentTree{
 		else if(left <= start && end <= right) {
 			return tree[node];
 		} else {
-			return query(node << 1 , start , (start + end) >> 1 , left , right) + query((node << 1) + 1 , ((start + end) >> 1) + 1 , end , left , right);
+			int mid = (start + end) >> 1;
+			int next = node << 1;
+			return query(next , start , mid , left , right) + query(next + 1 , mid + 1 , end , left , right);
 		}
 	}
 }
