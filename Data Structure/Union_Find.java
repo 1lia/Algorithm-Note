@@ -15,26 +15,19 @@ class UnionFind{
 	private int find(int x) {
 		if(arr[x] == x)
 			return x;
-		
-		arr[x] = find(arr[x]);
-		return arr[x];
+		return arr[x] = find(arr[x]);
 	}
 
 	public void merge(int x , int y) {
 		x = find(x);
 		y = find(y);
 		
-		if(x == y)
-			return;
-		arr[y] = x;
-		return;
+		if(x != y)
+			arr[y] = x;
 	}
 
 	public boolean Union(int x , int y){
-		x = find(x);
-		y = find(y);
-		
-		if(x == y)
+		if(find(x) == find(y))
 			return true;
 		return false;
 	}
