@@ -1,16 +1,15 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
-class Bipartite_Matching{
-	private boolean[] visit;
+class BipartiteMatching{
 	private ArrayList<Integer>[] g;
+	private int[] visit;
 	private int[] match;
-	private int N;
 	private int result;
+	private int N;
 
-	public Bipartite_Matching(int N) {
+	public BipartiteMatching(int N) {
 		this.N = N;
-		visit = new boolean[N+1];
+		visit = new int[N+1];
 		match = new int[N+1];
 		g = new ArrayList[N+1];
 		for (int i = 1; i <= N; i++) {
@@ -24,25 +23,26 @@ class Bipartite_Matching{
 
 	public void run() {
 		for (int i = 1; i <= N; i++) {
-			Arrays.fill(visit, false);
-			if(dfs(i)) {
+			if(dfs(i , i)) {
 				result++;
 			}
 		}
 	}
 	
-	public boolean dfs(int v) {
-		visit[v] = true;
+	public boolean dfs(int v, int state) {
+		visit[v] = state;
 		for (int i = 0; i < g[v].size(); i++) {
 			int next = g[v].get(i);
-			if(match[next] == 0 || (!visit[match[next]] && dfs(match[next]))) {
+			int nv = match[next];
+			if (nv == 0 || visit[nv] != state && dfs(nv, state)) {
 				match[next] = v;
 				return true;
 			}
 		}
 		return false;
 	}
-	public int print() {
-		return result;
+	
+	public void print() {
+		System.out.println(result);
 	}
 }
